@@ -1,0 +1,60 @@
+.absolute{
+    position: absolute;
+}
+
+#today{
+    font-size: 15px;
+    left: 10px;
+    top: 10px;
+}
+
+body{
+    background-color: #000000;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#graf{
+    left: 10px;
+    bottom: 1px;
+    background: linear-gradient(to bottom, gray, white 95%, gray);
+}
+
+p{
+    text-align: center;
+}
+
+#p1{
+    color: blue;
+}
+
+#p2{
+    color: bisque;
+}
+
+#p3{
+    color: yellow;
+}
+
+#p4{
+    color: orange;
+}
+
+#p5{
+    color: red;
+}
+
+#p6{
+    color: darkred;
+}
+
+#p7{
+    color: mediumvioletred;
+}

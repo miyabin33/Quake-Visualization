@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <title>Quake Visualization</title>
+        
+        <script src="js/script.js" type="text/javascript"></script>
+        <script src="js/minMatrixb.js" type="text/javascript"></script>
+        <script src="js/shader_utils.js" type="text/javascript"></script>
+        <script src="js/qv_utils.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+        
+        <script id="main_vs" type="x-shader/x-vertex">
+            attribute vec3 position;
+            attribute vec4 color;
+            attribute float flag;
+            uniform mat4 mvpMatrix;
+            varying vec4 vColor;
+            varying float vFrag;
+            
+            void main(){
+                vColor = color;
+                vFrag = flag;
+                gl_Position = mvpMatrix * vec4(position, 1.0);
+            }
+        </script>
+        
+        <script id="main_fs" type="x-shader/x-fragment">
+            precision mediump float;
+            
+            varying vec4 vColor;
+            
+            void main(){
+                gl_FragColor = vColor;
+            }
+        </script>
+        
+        <script id="point_vs" type="x-shader/x-vertex">
+            attribute vec3 position;
+			attribute vec4 color;
+			uniform mat4 mvpMatrix;
+			uniform float pointSize;
+			varying vec4 vColor;
+            
+            void main(){
+				vColor = color;
+				gl_Position = mvpMatrix * vec4(position, 1.0);
+				gl_PointSize = pointSize;
+			}
+        </script>
+        
+        <script id="point_fs" type="x-shader/x-fragment">
+			precision mediump float;
+			varying vec4 vColor;
+			uniform float time;
+
+			void main(){
+                float dist = distance(gl_PointCoord, vec2(0.5, 0.5));
+				if(dist < 0.5){
+                    gl_FragColor = vColor;
+                }else{
+                    discard;
+                }
+			}
+		</script>
+        
+    </head>
+    
+    <body>
+        
+        <canvas id="canvas"></canvas>
+        <input type="date" class="absolute" id="today">
+        <span id="graf" class="absolute">
+            <p>マグニチュード別色分け</p>
+            <p>『○○(以上)~××(未満)』</p>
+            <p id="p1">3.0~4.0</p>
+            <p id="p2">4.0~5.0</p>
+            <p id="p3">5.0~6.0</p>
+            <p id="p4">6.0~7.0</p>
+            <p id="p5">7.0~8.0</p>
+            <p id="p6">8.0~9.0</p>
+            <p id="p7">9.0~</p>
+        </span>
+    </body>
+    
+</html>
