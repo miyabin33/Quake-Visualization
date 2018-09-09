@@ -79,22 +79,6 @@ onload = function(){
     var QuCol = create_vbo(gl, QuData.c);
     var QuVBOList = [QuPos, QuCol];
     
-//frame buffer
-    var bufferWidth = 512, bufferHeight = 512;
-    
-    gl.activeTexture(gl.TEXTURE1);
-    gl.activeTexture(gl.TEXTURE2);
-    gl.activeTexture(gl.TEXTURE3);
-    gl.activeTexture(gl.TEXTURE4);
-    gl.activeTexture(gl.TEXTURE5);
-    var fBuffer = create_framebuffer(gl, bufferWidth, bufferHeight);
-    var bBuffer = create_framebuffer(gl, bufferWidth, bufferHeight);
-    var rBuffer = create_framebuffer(gl, bufferWidth, bufferHeight);
-    var gBuffer1 = create_framebuffer(gl, bufferWidth, bufferHeight);
-    var gBuffer2 = create_framebuffer(gl, bufferWidth, bufferHeight);
-    
-    update_framebuffer();
-    
     function update_framebuffer(){
         if(c.width <= 512 || c.height <= 512){
             bufferWidth = 512;
@@ -150,7 +134,7 @@ onload = function(){
     window.onresize = function(){
         display_resize(gl, 'canvas');
         update_framebuffer();
-    }
+    };
     
     var drag = false;
     var m_stX = 0, m_stY = 0;
